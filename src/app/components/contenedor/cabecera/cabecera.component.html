@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" [routerLink]="['/home']">
+        <!-- Imagen -->
+         <img src="../../../assets/images/Escudo.png" alt="" height="33px">
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" [routerLink]="['/home']" routerLinkActive="active">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['/contact']" routerLinkActive="active">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" [routerLink]="['/aboutMe']" routerLinkActive="active">Acerca De</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Colombia
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" [routerLink]="['/colombia/map']" routerLinkActive="bg-primary text-white">Mapas</a></li>
+            </ul>
+          </li>
+        </ul>
+        <div class="navbar-nav">
+          <span class="nav-item">
+            <a href="#" class="nav-link">Inicio de Sesión</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>

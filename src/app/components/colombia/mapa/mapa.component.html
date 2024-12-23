@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+    <div class="col-lg-8">
+        <h3 class="text-center fw-bold mt-3">Lista de Mapas de Colombia</h3>
+    </div>
+</div>
+<div *ngIf="cargaFinalizada; else spinner" class="d-flex justify-content-center">
+    <div class="col-lg-8 mt-2">
+        <div class="d-flex justify-content-between">
+            <div class="col-md-2">
+                <label for="cantidadMostrar" class="form-label fst-italic fw-bold">Cantidad Registros</label>
+                <select name="cantidadMostrar" id="cantidadMostrar" [(ngModel)]="cantidadMostrar" class="form-select form-select-sm" (change)="cambiarCantidadRegistros($event.target)">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <table class="table table-sm table-striped table-hover">
+                    <thead class="table-dark text-white text-center">
+                        <tr>
+                            <th style="width: 5%">Código</th>
+                            <th style="width: 25%">Nombre</th>
+                            <th style="width: 60%">Descripción</th>
+                            <th style="width: 10%">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let objMapa of arrMapas | paginate:{ id : 'paginadorDepartamento', itemsPerPage: cantidadMostrar, currentPage: paginaActual, totalItems: arrMapas.length }; let indice = index" align="center">
+                            <td class="align-content-center">{{objMapa.id}}</td>
+                            <td class="align-content-center">{{objMapa.name}}</td>
+                            <td class="align-content-center">{{objMapa.description}}</td>
+                            <td class="text-center align-content-center">
+                                <a class="btn btn-info btn-sm" (click)="abrirVentanaDetalle(modalDetalle,objMapa)">
+                                    <i class="fa fa-map fw-bold fs-4"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-md-4">
+                        <small><strong>{{cantidadTotalRegistros}}</strong> Registros encontrados en <strong>{{cantidadPaginas}}</strong></small>
+                    </div>
+                    <div class="col-md-8 d-flex justify-content-end">
+                        <small>
+                            <pagination-controls id="paginadorDepartamento" (pageChange)="cambiarPagina($event)" [maxSize]="10" [directionLinks]="true" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #spinner>
+    <app-spinner></app-spinner>
+</ng-template>
+
+<ng-template #modalDetalle>
+    <div class="card rounded-3 shadow-sm">
+        <div class="card-header py-3 text-center">
+            <h4 class="my-0 fw-semibold fst-italic">{{modalTitulo}}</h4>
+        </div>
+        <div class="card-body">
+            <span>
+                <p class="fw-semibold fst-italic px-4" align="center">
+                    {{modalContenido}} <br>
+                    <img src="{{modalImg}}" alt="" style="width: 400px; height: 400px;">
+                </p>
+            </span>
+        </div>
+        <div class="card-footer">
+            <span class="d-flex justify-content-center">
+                <button type="button" class="btn btn-sm btn-outline-danger mx-2 col-3" (click)="botonCerrar()">Cancelar</button>
+            </span>
+        </div>
+    </div>
+</ng-template>
